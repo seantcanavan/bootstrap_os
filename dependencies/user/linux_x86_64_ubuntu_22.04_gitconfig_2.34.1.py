@@ -4,25 +4,30 @@ import sys
 
 from bootstrap_utils import load_env_file
 
-if not os.path.exists(".env"):
+if not os.path.exists(".env") and os.path.exists("../../../.env"):
     print("Error: You must set a .env file. Please refer to the example file as a starting template.")
     sys.exit(1)
 
-load_env_file(".env")
+if os.path.exists(".env"):
+    load_env_file(".env")
+
+if os.path.exists("../../../.env"):
+    load_env_file(".env")
 
 # Get the user's name and email from environment variables
-user_name = os.getenv('BOOTSTRAP_GIT_USER_NAME')
-user_email = os.getenv('BOOTSTRAP_GIT_USER_EMAIL')
+git_user_name = os.getenv('BOOTSTRAP_GIT_USER_NAME')
+if git_user_name is None:
+    print("Error: the environment variable 'BOOTSTRAP_GIT_USER_NAME' must be set.")
 
-# If either variable is not set, print an error and exit
-if user_name is None or user_email is None:
-    print("Error: The environment variables 'user_name' and 'user_email' must be set.")
-    sys.exit(1)
+git_user_email = os.getenv('BOOTSTRAP_GIT_USER_EMAIL')
+if git_user_email is None:
+    print("Error: the environment variable 'BOOTSTRAP_GIT_USER_EMAIL' must be set.")
 
 # Define the commands to run
 commands = [
-    ['git', 'config', '--global', 'user.name', user_name],
-    ['git', 'config', '--global', 'user.email', user_email],
+    ['git', 'config', '--global', 'user.name', git_user_name],
+    ['git', 'config', '--global', 'user.email', git_user_email],
+    ['git', 'config', '--global', '--add', '--bool', 'push.autoSetupRemote' 'true'],
 ]
 
 # Execute each command

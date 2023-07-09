@@ -1,5 +1,6 @@
 name,order,version
 gitconfig,1,2.34.1
-jetbrainstoolbox,2,1.28.1.15219
-python,3,3.9.17
-golang,4,1.18.10
+github,2,1
+jetbrainstoolbox,3,1.28.1.15219
+python,4,3.9.17
+golang,5,1.18.10
