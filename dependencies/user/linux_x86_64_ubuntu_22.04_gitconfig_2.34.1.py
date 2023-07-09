@@ -1,18 +1,8 @@
 import os
 import subprocess
-import sys
 
-from bootstrap_utils import load_env_file
-
-if not os.path.exists(".env") and os.path.exists("../../../.env"):
-    print("Error: You must set a .env file. Please refer to the example file as a starting template.")
-    sys.exit(1)
-
-if os.path.exists(".env"):
-    load_env_file(".env")
-
-if os.path.exists("../../../.env"):
-    load_env_file(".env")
+# Get all environment variables
+env_vars = os.environ
 
 # Get the user's name and email from environment variables
 git_user_name = os.getenv('BOOTSTRAP_GIT_USER_NAME')

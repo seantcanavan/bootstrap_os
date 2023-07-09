@@ -1,7 +1,9 @@
 import os
 import subprocess
+import sys
 from pprint import pprint
 
+from bootstrap_utils import load_env_file
 from dependency import parse_deps
 
 
@@ -9,6 +11,12 @@ class Executor:
     def __init__(self, debug: bool, deps_file: str):
         self.debug = debug
         self.deps_file = deps_file
+
+        if not os.path.exists(".env"):
+            print("Error: You must set a .env file. Please refer to the example file as a starting template.")
+            sys.exit(1)
+
+        load_env_file(".env")
 
         dependencies = parse_deps(self.deps_file)
         for current_dep in dependencies:

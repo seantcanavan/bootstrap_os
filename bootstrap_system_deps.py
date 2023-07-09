@@ -13,4 +13,4 @@ else:
     print("This script requires sudo to run.")
     sys.exit(1)
 
-Executor(False, 'dependencies/system/deps.csv')
+Executor(True, 'dependencies/system/deps.csv')

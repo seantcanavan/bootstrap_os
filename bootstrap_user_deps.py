@@ -7,4 +7,4 @@ if os.geteuid() == 0:
     print("This script DOES NOT REQUIRE sudo to run. DO NOT RUN IT WITH SUDO. EVER. THAT WOULD BE BAD.")
     sys.exit(1)
 
-Executor(False, 'dependencies/user/deps.csv')
+Executor(True, 'dependencies/user/deps.csv')
