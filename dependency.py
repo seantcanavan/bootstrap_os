@@ -31,7 +31,12 @@ def build_file_name(system: str, machine: str, distro_id: str, distro_version: s
 
 
 def parse_deps(input_file: str) -> List[Dependency]:
-    sys_summary = build_sys_summary(py_platform.system(), py_platform.machine(), distro.id(), distro.version())
+    system = py_platform.system()
+    machine = py_platform.machine()
+    distro_id = distro.id()
+    distro_version = distro.version()
+
+    sys_summary = build_sys_summary(system, machine, distro_id, distro_version)
     print(f"sys_summary: {sys_summary}")
 
     deps: List[Dependency] = []
@@ -40,12 +45,7 @@ def parse_deps(input_file: str) -> List[Dependency]:
         reader = csv.reader(file)
         next(reader)  # Skip the header row
         for row in reader:
-            distro_id, distro_version, machine, name, order, system, version = row
-            row_summary = build_sys_summary(system, machine, distro_id, distro_version)
-
-            if row_summary != sys_summary:
-                continue
-
+            name, order, version = row
             file_prefix = "/".join(input_file.split("/")[0:2]) + "/"
             file_append = build_file_name(system, machine, distro_id, distro_version, name, version) + ".py"
             file_name = file_prefix + file_append

@@ -1,5 +1,2 @@
-distro_id,distro_version,machine,name,order,system,version
-x,x,arm64,basepackages,1,macos,1
-x,x,x86_64,basepackages,1,macos,1
-ubuntu,22.04,x86_64,basepackages,1,Linux,1
-x,x,x86_64,basepackages,1,windows,1
+name,order,version
+basepackages,1,1

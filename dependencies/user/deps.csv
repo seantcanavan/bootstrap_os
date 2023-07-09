@@ -1,25 +1,5 @@
-order,dependency,system,machine,distro_id,distro_version,version,package_manager,verify_input,verify_output,source_url,package_url
-1,coreutils,macos,arm64,x,x,1,brew,git version,git version 2.34.1,brew install git,brew install git
-1,coreutils,macos,x86_64,x,x,1,brew,git version,git version 2.34.1,brew install git,brew install git
-1,coreutils,Linux,x86_64,ubuntu,22.04,1,apt,git version,git version 2.34.1,sudo apt-get install git,sudo apt-get install git
-1,coreutils,windows,x86_64,x,x,1,winget,git version,git version 2.34.1,winget install git,winget install git
-1,git,macos,arm64,x,x,2.34.1,brew,git version,git version 2.34.1,brew install git,brew install git
-1,git,macos,x86_64,x,x,2.34.1,brew,git version,git version 2.34.1,brew install git,brew install git
-1,git,Linux,x86_64,ubuntu,22.04,2.34.1,apt,git version,git version 2.34.1,sudo apt-get install git,sudo apt-get install git
-1,git,windows,x86_64,x,x,2.34.1,winget,git version,git version 2.34.1,winget install git,winget install git
-2,gitconfig,macos,arm64,x,x,2.34.1,brew,git version,git version 2.34.1,brew install git,brew install git
-2,gitconfig,macos,x86_64,x,x,2.34.1,brew,git version,git version 2.34.1,brew install git,brew install git
-2,gitconfig,Linux,x86_64,ubuntu,22.04,2.34.1,apt,git version,git version 2.34.1,sudo apt-get install git,sudo apt-get install git
-2,gitconfig,windows,x86_64,x,x,2.34.1,winget,git version,git version 2.34.1,winget install git,winget install git
-2,jetbrainstoolbox,macos,arm64,x,x,1.28.1.15219,wget,ls ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,/home/userwork/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=macM1,https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.28.1.15219-arm64.dmg
-2,jetbrainstoolbox,macos,x86_64,x,x,1.28.1.15220,wget,ls ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,/home/userwork/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=mac,https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.28.1.15219.dmg
-2,jetbrainstoolbox,Linux,x86_64,ubuntu,22.04,1.28.1.15221,wget,ls ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,/home/userwork/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=linux,https://download-cdn.jetbrains.com/toolbox/jetbrains-toolbox-1.28.1.15219.tar.gz
-2,jetbrainstoolbox,windows,x86_64,x,x,1.28.1.15222,wget,ls ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,/home/userwork/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=windows,https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.28.1.15219.exe
-3,python,macos,arm64,x,x,3.9.17,brew,ls ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,/home/userwork/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,brew install git,brew install git
-3,python,macos,x86_64,x,x,3.9.17,brew,ls ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,/home/userwork/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,brew install git,brew install git
-3,python,Linux,x86_64,ubuntu,22.04,3.9.17,apt,ls ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,/home/userwork/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,sudo apt-get install git,sudo apt-get install git
-3,python,windows,x86_64,x,x,3.9.17,winget,ls ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,/home/userwork/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,winget install git,winget install git
-4,golang,macos,arm64,x,x,1.18.10,brew,ls ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,/home/userwork/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,https://go.dev/dl/,https://go.dev/dl/go1.18.10.darwin-arm64.pkg
-4,golang,macos,x86_64,x,x,1.18.10,brew,ls ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,/home/userwork/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,https://go.dev/dl/,https://go.dev/dl/go1.18.10.darwin-amd64.pkg
-4,golang,Linux,x86_64,ubuntu,22.04,1.18.10,apt,ls ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,/home/userwork/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,https://go.dev/dl/,https://go.dev/dl/go1.18.10.linux-amd64.tar.gz
-4,golang,windows,x86_64,x,x,1.18.10,winget,ls ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,/home/userwork/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox,https://go.dev/dl/,https://go.dev/dl/go1.18.10.windows-amd64.msi
+name,order,version
+gitconfig,1,2.34.1
+jetbrainstoolbox,2,1.28.1.15219
+python,3,3.9.17
+golang,4,1.18.10

@@ -1,8 +1,7 @@
 import os
-import subprocess
 import sys
 
-from dependency import parse_deps
+from executor import Executor
 
 if os.geteuid() == 0:
     print("The script is running with sudo permissions.")
@@ -14,7 +13,4 @@ else:
     print("This script requires sudo to run.")
     sys.exit(1)
 
-deps = parse_deps('dependencies/system/deps.csv')
-
-for dep in deps:
-    subprocess.run(["python3", dep.file_name])
+Executor(False, 'dependencies/system/deps.csv')
