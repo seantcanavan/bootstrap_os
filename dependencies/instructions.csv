@@ -1,0 +1,13 @@
+"dependency","platform","architecture","version","package_manager","source_url","package_url"
+"jetbrains_toolbox","mac_os","arm64","1.28.1.15219",,"https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=macM1","https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.28.1.15219-arm64.dmg"
+"jetbrains_toolbox","mac_os","x86_64","1.28.1.15220",,"https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=mac","https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.28.1.15219.dmg"
+"jetbrains_toolbox","linux","x86_64","1.28.1.15221",,"https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=linux","https://download-cdn.jetbrains.com/toolbox/jetbrains-toolbox-1.28.1.15219.tar.gz"
+"jetbrains_toolbox","windows","x86_64","1.28.1.15222",,"https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=windows","https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.28.1.15219.exe"
+"golang","mac_os","arm64","1.18.10",,"https://go.dev/dl/","https://go.dev/dl/go1.18.10.darwin-arm64.pkg"
+"golang","mac_os","x86_64","1.18.10",,"https://go.dev/dl/","https://go.dev/dl/go1.18.10.darwin-amd64.pkg"
+"golang","linux","x86_64","1.18.10",,"https://go.dev/dl/","https://go.dev/dl/go1.18.10.linux-amd64.tar.gz"
+"golang","windows","x86_64","1.18.10",,"https://go.dev/dl/","https://go.dev/dl/go1.18.10.windows-amd64.msi"
+"python","mac_os","arm64","3.9.17",,,
+"python","mac_os","x86_64","3.9.17",,,
+"python","linux","x86_64","3.9.17","apt",,
+"python","windows","x86_64","3.9.17",,,
