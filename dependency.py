@@ -37,7 +37,7 @@ def parse_deps(input_file: str) -> List[Dependency]:
     distro_version = distro.version()
 
     sys_summary = build_sys_summary(system, machine, distro_id, distro_version)
-    print(f"sys_summary: {sys_summary}")
+    print(f"Installing dependencies for: {sys_summary}")
 
     deps: List[Dependency] = []
 
@@ -49,7 +49,6 @@ def parse_deps(input_file: str) -> List[Dependency]:
             file_prefix = "/".join(input_file.split("/")[0:2]) + "/"
             file_append = build_file_name(system, machine, distro_id, distro_version, name, version) + ".py"
             file_name = file_prefix + file_append
-            print(f"file_name: {file_name}")
 
             dependency_instance = Dependency(
                 distro_id=distro_id,

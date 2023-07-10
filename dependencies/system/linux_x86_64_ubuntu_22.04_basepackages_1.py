@@ -1,7 +1,16 @@
 import os
 import subprocess
 import sys
-from pprint import pprint
+
+output = []
+
+
+def done(code: int):
+    output.append(f"exiting with code {code}")
+    with open(os.path.basename(__file__) + ".txt", "w") as file:
+        file.write("\n".join(output))
+    sys.exit(code)
+
 
 snap_services_to_disable = [
     "snapd.service",
@@ -10,18 +19,15 @@ snap_services_to_disable = [
 ]
 
 all_running_services = subprocess.run(['service', '--status-all'], capture_output=True, text=True).stdout.strip()
-# print(f"all_services_result: {all_running_services}")
 
 for service in snap_services_to_disable:
     if service in all_running_services:
-        # print(f"disabling service: {service}")
-        result = subprocess.run(['sudo', 'systemctl', 'disable', service])
+        command = ['sudo', 'systemctl', 'disable', service]
+        output.append(" ".join(command))
+        result = subprocess.run(command)
         if result != 0:
-            print(f"error disabling service: {service}")
-            sys.exit(1)
-
-print("Successfully disabled all services in snap_services_to_disable:")
-pprint(snap_services_to_disable)
+            output.append(f"error disabling service: {service}")
+            done(1)
 
 snap_locations = [
     '/var/lib/snapd/snaps',
@@ -30,18 +36,16 @@ snap_locations = [
 
 for location in snap_locations:
     if not os.path.exists(location):
-        print(f"location {location} does not exist. continuing.")
+        output.append(f"snap location {location} does not exist. continuing.")
         continue
     installed_snaps = subprocess.run(['ls', '-l', location], capture_output=True, text=True).stdout.strip()
-    # print(f"installed_snaps: {installed_snaps}")
     for current_snap in installed_snaps:
-        remove_snap = subprocess.run(['sudo', 'snap', 'remove', current_snap])
+        command = ['sudo', 'snap', 'remove', current_snap]
+        output.append(" ".join(command))
+        remove_snap = subprocess.run(command)
         if remove_snap != 0:
-            print("Error uninstalling snap spackage " + current_snap)
-            sys.exit(1)
-
-print("Successfully removed all snaps in snap_locations:")
-pprint(snap_locations)
+            output.append(f"Error uninstalling snap spackage {current_snap}")
+            done(1)
 
 apt_packages_to_install = [
     "build-essential",
@@ -63,9 +67,23 @@ apt_packages_to_install = [
 ]
 
 for package in apt_packages_to_install:
-    result = subprocess.run(['dpkg', '-s', package], capture_output=True, text=True)
+    command = [
+        'dpkg',
+        '-s',
+        package
+    ]
+    result = subprocess.run(command, capture_output=True, text=True)
     if result.returncode != 0:
-        subprocess.run(['sudo', 'apt', 'install', '-y', package])
+        install_command = [
+            'sudo',
+            'apt',
+            'install',
+            '-y',
+            package
+        ]
+        output.append(" ".join(install_command))
+        subprocess.run(install_command)
+    else:
+        output.append(f"package {package} is already installed.")
 
-print("Successfully installed all packages in apt_packages_to_install:")
-pprint(apt_packages_to_install)
+done(0)

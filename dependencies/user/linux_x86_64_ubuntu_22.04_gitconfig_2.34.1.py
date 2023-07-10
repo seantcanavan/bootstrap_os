@@ -1,9 +1,6 @@
 import os
 import subprocess
 
-# Get all environment variables
-env_vars = os.environ
-
 # Get the user's name and email from environment variables
 git_user_name = os.getenv('BOOTSTRAP_GIT_USER_NAME')
 if git_user_name is None:
@@ -17,7 +14,7 @@ if git_user_email is None:
 commands = [
     ['git', 'config', '--global', 'user.name', git_user_name],
     ['git', 'config', '--global', 'user.email', git_user_email],
-    ['git', 'config', '--global', '--add', '--bool', 'push.autoSetupRemote' 'true'],
+    ['git', 'config', '--global', '--add', '--bool', 'push.autoSetupRemote', 'true'],
 ]
 
 # Execute each command
