@@ -1,7 +1,6 @@
 name,order,version
 gitconfig,1,2.34.1
 github,2,2.34.1
-chrome,3,112.0
 jetbrainstoolbox,4,1.28.1.15219
 python,5,3.9.17
 golang,6,1.18.10

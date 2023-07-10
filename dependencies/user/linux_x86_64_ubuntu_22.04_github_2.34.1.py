@@ -1,10 +1,18 @@
-import json
 import os
 import subprocess
 import sys
-from pprint import pprint
 
 from bootstrap_utils import load_env_file
+
+output = []
+
+
+def done(code: int):
+    output.append(f"exiting with code 12{code}\n")
+    with open(os.path.basename(__file__) + ".txt", "w") as file:
+        file.write("\n".join(output))
+    sys.exit(code)
+
 
 load_env_file("../../.env")
 
@@ -12,33 +20,33 @@ LINUX_SSH_KEY_PATH = os.path.expanduser('~') + "/.ssh/id_rsa.pub"
 
 github_user_name = os.getenv('BOOTSTRAP_GITHUB_USER_NAME')
 if github_user_name is None:
-    print("Error: the environment variable 'BOOTSTRAP_GITHUB_USER_NAME' must be set.")
-    sys.exit(1)
+    output.append("Error: the environment variable 'BOOTSTRAP_GITHUB_USER_NAME' must be set.")
+    done(1)
 
 github_user_email = os.getenv('BOOTSTRAP_GITHUB_USER_EMAIL')
 if github_user_email is None:
-    print("Error: the environment variable 'BOOTSTRAP_GITHUB_USER_EMAIL' must be set.")
-    sys.exit(1)
+    output.append("Error: the environment variable 'BOOTSTRAP_GITHUB_USER_EMAIL' must be set.")
+    done(1)
 
 github_personal_api_pat = os.getenv('BOOTSTRAP_GITHUB_PERSONAL_API_PAT')
 if github_personal_api_pat is None:
-    print("Error: the environment variable 'BOOTSTRAP_GITHUB_PERSONAL_API_PAT' must be set.")
-    sys.exit(1)
+    output.append("Error: the environment variable 'BOOTSTRAP_GITHUB_PERSONAL_API_PAT' must be set.")
+    done(1)
 
 github_org_repo_pat = os.getenv('BOOTSTRAP_GITHUB_ORG_REPO_PAT')
 if github_org_repo_pat is None:
-    print("WARN: No PAT set for accessing your internal repos. Will not override git URL in .gitconfig.")
+    output.append("WARN: No PAT set for accessing your internal repos. Will not override git URL in .gitconfig.")
 
 commands = [
     ["mkdir", "-p", os.path.expanduser('~') + "/code/github.com"],
 ]
 
 if not os.path.exists(LINUX_SSH_KEY_PATH):
-    f = os.path.isfile(os.path.expanduser("~") + "/.ssh/id_rsa.pub")
-    print("Generating public/private key pair since none exists")
+    output.append("Generating public/private key pair since none exists")
     commands.append(["ssh-keygen", "-t", "rsa", "-b", "4096", "-C", github_user_email, "-f", os.path.expanduser("~") + "/.ssh/id_rsa", "-N", "\"\""])
 
 if github_org_repo_pat is not None:
+    output.append("Github Org Repo PAT is set. Will configure .gitconfig to override calls to github.com with your PAT")
     github_pat_command = [
         'git',
         'config',
@@ -49,24 +57,28 @@ if github_org_repo_pat is not None:
     commands.append(github_pat_command)
 
 for command in commands:
-    print(f"command is {command}")
-    process = subprocess.Popen(command)
-    output, error = process.communicate()
-
-    if error is not None:
-        print(f"An error occurred: {error}")
+    str_command = " ".join(command)
+    result = subprocess.run(command)
+    if result.returncode != 0:
+        output.append(f"Error running command {str_command}")
+        done(1)
     else:
-        print(f"Command '{' '.join(command)}' executed successfully")
+        output.append(str_command)
 
-if github_personal_api_pat is not None:
-    command = [
-        'curl',
-        '-H',
-        f'Authorization: token {github_personal_api_pat}',
-        f'https://api.github.com/user/{github_user_name}/repos'
-    ]
-    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    output, error = process.communicate()
-    repos = json.loads(output.decode('utf-8'))
-    pprint(repos)
-    x = 4
+github_commands = [
+    ["curl", "-u", f"{github_user_name}:{github_personal_api_pat}", f"https://api.github.com/user/repos"],
+]
+
+for command in github_commands:
+    output.append(command)
+    str_command = " ".join(command)
+    result = subprocess.run(command)
+    if result.returncode != 0:
+        output.append(f"Error running command {str_command}")
+        done(1)
+    output.append(str_command)
+    output.append("hi sean")
+    api_output = result.stdout.strip()
+    output.append(api_output)
+
+done(0)

@@ -37,7 +37,7 @@ def parse_deps(input_file: str) -> List[Dependency]:
     distro_version = distro.version()
 
     sys_summary = build_sys_summary(system, machine, distro_id, distro_version)
-    print(f"Installing dependencies for: {sys_summary}")
+    print(f"Installing dependencies for: {sys_summary}\n")
 
     deps: List[Dependency] = []
 

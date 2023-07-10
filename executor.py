@@ -23,13 +23,12 @@ class Executor:
             if not os.path.exists(current_dep.file_name):
                 print(f"WARNING: Missing Dependency file {current_dep.file_name}. Continuing.")
                 continue
-            try:
-                subprocess.run(["python3", current_dep.file_name], capture_output=True, text=True)
-                print(f"\n\nSuccessfully ran dep file {current_dep.file_name}. Output:")
-                to_open = str(current_dep.file_name).replace(self.base_path, "") + ".txt"
-                with open(to_open, "r") as file:
-                    for line in file:
-                        print(line.rstrip())
-            except subprocess.CalledProcessError as e:
-                print(f"Error code executing file_name {current_dep.file_name}. Error is {e}. Exiting.")
+            result = subprocess.run(["python3", current_dep.file_name], capture_output=True, text=True)
+            print(f"executed {current_dep.file_name}:\n")
+            to_open = str(current_dep.file_name).replace(self.base_path, "") + ".txt"
+            with open(to_open, "r") as file:
+                for line in file:
+                    print(line.rstrip())
+            if result.returncode != 0:
+                print("finished with errors.")
                 sys.exit(1)
