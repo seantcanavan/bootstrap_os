@@ -1,0 +1,2 @@
+Unattended-Upgrade::Allowed-Origins::
+"LP-PPA-mozillateam:${distro_codename}";
