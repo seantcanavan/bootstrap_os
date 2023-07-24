@@ -28,16 +28,10 @@ def exec_strip_split(command: [str], quiet: bool = None, split_char: str = None,
 
 
 os.environ["HOME"] = "/home/userwork"
+logged_in_user = "userwork"
 
-apt_setup_commands = []
+# github_classic = input("Enter your github classic token. This will be used to download all of your repos. ")
+# github_signing_key = input("Enter your github signing key. This will be used to enable signed git commits.")
 
-if "VGA compatible controller: NVIDIA Corporation" in exec_strip_split(["lspci"]):
-    apt_setup_commands.append(["wget",
-                               "https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/cuda-repo-ubuntu2204-12-2-local_12.2.0-535.54.03-1_amd64.deb"])
-    apt_setup_commands.append(["sudo", "dpkg", "-i", "cuda-repo-ubuntu2204-12-2-local_12.2.0-535.54.03-1_amd64.deb"])
-    apt_setup_commands.append(
-        ["sudo", "cp", "/var/cuda-repo-ubuntu2204-12-2-local/cuda-*-keyring.gpg", "/usr/share/keyrings/"])
-
-prt_plus("Performing package setup commands")
-for setup_command in apt_setup_commands:
-    exec_print(setup_command)
+user_name = "Sean T Canavan"
+user_email = "seantcanavan@gmail.com"

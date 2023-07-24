@@ -1,2 +1,3 @@
-.deb
+*.deb
 .idea/
+retry/gpg_config_file
