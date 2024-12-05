@@ -43,16 +43,15 @@ apt_setup_commands = [
         "root:root",
         "etc/",
     ],
-    ["sudo", "cp", "-rv", "etc/", "/etc"],
+    ["sudo", "cp", "-rv", "etc/", "/"],
     ["sudo", "apt-get", "update", "-y", "-qq"],
     ["sudo", "apt-get", "upgrade", "-y", "-qq"],
     ["sudo", "apt-get", "dist-upgrade", "-y", "-qq"],
     ["sudo", "apt-get", "autoremove", "-y", "-qq"],
 ]
 
-apt_setup_commands.extend(download_ungoogled_chromium_deb())
-print("about to call")
-apt_setup_commands.extend(download_slack_deb())
+apt_setup_commands.extend(download_ungoogled_chromium_deb(username=logged_in_user))
+apt_setup_commands.extend(download_slack_deb(username=logged_in_user))
 
 
 # ubuntu update commands
