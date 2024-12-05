@@ -1,7 +1,13 @@
 SHELL := /bin/bash
 
-install-system:
-	source .env && sudo python3 bootstrap_system_deps.py
 
-install-user:
-	source .env && python3 bootstrap_user_deps.py
+.PHONE: ubuntu python deps
+
+deps:
+	source venv/bin/activate && pip install -r requirements.txt
+
+python:
+	python3 -m venv venv
+
+ubuntu:
+	sudo python3 ubuntu/ubuntu.py
