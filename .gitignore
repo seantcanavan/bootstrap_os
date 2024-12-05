@@ -1,3 +1,5 @@
 *.deb
 .idea/
 retry/gpg_config_file
+*.gpg
+__pycache__/*
