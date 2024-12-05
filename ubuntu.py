@@ -1,8 +1,8 @@
 import os
 
 from git import add_git_auto_setup_remote, add_git_user_and_email
-from install_slack import download_slack_deb
-from install_ungoogled_chromium import download_ungoogled_chromium_deb
+from download_slack_deb import download_slack_deb
+from download_ungoogled_chromium_deb import download_ungoogled_chromium_deb
 from snap import remove_snap_folders, remove_snap_services
 from utils import exec_print, exec_strip_split, prt_plus
 
@@ -15,7 +15,7 @@ remove_snap_services()
 remove_snap_folders(username=logged_in_user)
 
 apt_setup_commands = [
-    ["wget", "-N", "https://download.sublimetext.com/sublimehq-pub.gpg"],
+    ["wget", "-N", "-O", "sublimehq-pub.gpg", "https://download.sublimetext.com/sublimehq-pub.gpg"],
     ["gpg", "--dearmor", "sublimehq-pub.gpg"],
     [
         "sudo",

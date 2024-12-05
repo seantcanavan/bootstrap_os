@@ -1,5 +1,5 @@
 import re
-import urllib
+import urllib.request
 from typing import List
 
 from utils import prt_plus
